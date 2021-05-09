@@ -4,12 +4,12 @@
 		<title>让坦克开起来</title>
 		<style type="text/css">
 			input{font-size:26px;margin-top: 20px;}
-			body{background-image: url(images/grassland.png);}
+			body{background-image: url(grassland.png);}
 			#mytank{position: absolute;left:10px;top:100px}
 		</style>
 	</head>
 	<body>	
-		<img id="mytank" src="images/right.png"/>
+		<img id="mytank" src="right.png"/>
 		<script>
 			console.log("189000919 熊小锋");
 			console.log(document.documentElement.clientWidth);
@@ -22,19 +22,19 @@
 			var event = event || window.event;  // 标准化事件对象
 			switch(event.keyCode){  // 获取当前按下键盘键的编码
 				case 37 :  // 按左箭头键，向左移动5个像素
-				tank.src = "images/left.png";
+				tank.src = "left.png";
 					tank.style.left = tank.offsetLeft - 5  + "px";
 						break;
 				case 39 :  // 按右箭头键，向右移动5个像素
-				tank.src = "images/right.png";
+				tank.src = "right.png";
 					tank.style.left = tank.offsetLeft + 5 + "px";
 						break;
 				case 38 :  // 按上箭头键，向上移动5个像素
-				tank.src = "images/up.png";
+				tank.src = "up.png";
 					tank.style.top = tank.offsetTop  - 5 + "px";
 						break;
 				case 40 :  // 按下箭头键，向下移动5个像素
-				tank.src = "images/down.png";
+				tank.src = "down.png";
 					tank.style.top = tank.offsetTop  + 5 + "px";
 						break;
 			}
