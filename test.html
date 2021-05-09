@@ -1,11 +1,76 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-  <div>111111</div>
-</body>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>让坦克开起来</title>
+		<style type="text/css">
+			input{font-size:26px;margin-top: 20px;}
+			body{background-image: url(images/grassland.png);}
+			#mytank{position: absolute;left:10px;top:100px}
+		</style>
+	</head>
+	<body>	
+		<img id="mytank" src="images/right.png"/>
+		<script>
+			console.log("189000919 熊小锋");
+			console.log(document.documentElement.clientWidth);
+			console.log(document.documentElement.clientHeight);
+			// 编写代码，让坦克能上下左右移动
+	     var tank = document.getElementById("mytank");  // 获取页面元素的引用指针
+					document.onkeydown = keyDown;
+    				//在Document对象中注册keyDown事件处理函数
+		function keyDown(event){  // 方向键控制元素移动函数
+			var event = event || window.event;  // 标准化事件对象
+			switch(event.keyCode){  // 获取当前按下键盘键的编码
+				case 37 :  // 按左箭头键，向左移动5个像素
+				tank.src = "images/left.png";
+					tank.style.left = tank.offsetLeft - 5  + "px";
+						break;
+				case 39 :  // 按右箭头键，向右移动5个像素
+				tank.src = "images/right.png";
+					tank.style.left = tank.offsetLeft + 5 + "px";
+						break;
+				case 38 :  // 按上箭头键，向上移动5个像素
+				tank.src = "images/up.png";
+					tank.style.top = tank.offsetTop  - 5 + "px";
+						break;
+				case 40 :  // 按下箭头键，向下移动5个像素
+				tank.src = "images/down.png";
+					tank.style.top = tank.offsetTop  + 5 + "px";
+						break;
+			}
+			return false
+		}
+		//鼠标无法点击右键且弹出提示窗口
+		function disableRightClick(e) 
+			{ 
+			var message = "右键已经禁用，谢谢合作"; 
+			if(!document.rightClickDisabled) // initialize 
+			{ 
+			if(document.layers) 
+			{ 
+			document.captureEvents(Event.MOUSEDOWN); 
+			document.onmousedown = disableRightClick; 
+			} 
+			else document.oncontextmenu = disableRightClick; 
+			return document.rightClickDisabled = true; 
+			} 
+			if(document.layers || (document.getElementById && !document.all)) 
+			{ 
+			if (e.which==2||e.which==3) 
+			{ 
+			alert(message); 
+			return false; 
+			} 
+			} 
+			else 
+			{ 
+			alert(message); 
+			return false; 
+			} 
+			} 
+			disableRightClick();
+
+
+		</script>
+	</body>
 </html>
