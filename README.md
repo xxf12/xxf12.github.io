@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,10 +13,6 @@
         <p>院系： 软件学院</p>
         <p>爱好： JavaScript</p>
     </div>
-
-    <div class = "menu">
-        1111;
-
-    </div>
+    <a>1111</a>
 </body>
 </html>
