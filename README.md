@@ -13,6 +13,6 @@
         <p>院系： 软件学院</p>
         <p>爱好： JavaScript</p>
     </div>
-    <a href = "test.html">1111</a>
+    <a href = "test.html"><img src = "left.png"/ alt = "让坦克动起来"></a>
 </body>
 </html>
