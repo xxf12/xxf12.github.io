@@ -1,0 +1,161 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>实验5：图片的DOM操作</title>
+		<style type="text/css">
+			html,div,ul,li {margin: 0px;padding: 0px;}
+			a{cursor: pointer;}
+			li {list-style: none;cursor: pointer;}
+			fieldset {border: #000 1px dashed;width: 225px;height: 225px;padding: 10px;text-align: center;float: left;margin-left: 5px;}
+			fieldset p{width: 225px;word-wrap:break-word;}
+			#cont_left {width: 300px;height: 500px;float: left;}
+			#cont_right {float: left;}
+			.newcss1{background-color: yellowgreen;}
+		</style>
+	</head>
+	<body>
+		<div id="cont_left">
+			<ul><img src="fold.gif"><a onclick="show('menu1')"> 通过DOM获取信息 </a>
+				<ul id="menu1">
+					<li><img src="doc.gif">获取原始图片路径</li>
+					<li><img src="doc.gif">获取我喜欢的水果</li>
+				</ul>
+			</ul>
+
+			<ul><img src="fold.gif"><a onclick="show('menu2')"> 通过DOM操作元素 </a>
+				<ul id="menu2">
+					<li><img src="doc.gif">创建图片</li>
+					<li><img src="doc.gif">克隆图片</li>
+					<li><img src="doc.gif">改变图片</li>
+					<li><img src="doc.gif">删除图片</li>
+				</ul>
+			</ul>
+
+			<ul><img src="fold.gif"><a onclick="show('menu3')"> 通过DOM操作样式 </a>
+				<ul id="menu3">
+					<li><img src="doc.gif">为原始图片加上行间样式</li>
+					<li><img src="doc.gif">为所有的fieldset加上内部样式</li>
+				</ul>
+			</ul>
+
+		</div>
+		<fieldset>
+			<legend>原始图片</legend>
+			<img id="fruit" src="img/fruit.jpg">
+		</fieldset>
+		<fieldset>
+			<legend>图片路径</legend>
+			<p id="msg1">在这里显示</p>
+		</fieldset>
+		<fieldset>
+			<legend>选择你喜欢的水果</legend>
+			<ul style="text-align: left;">
+				<li>
+					<input name="enjoy" type="checkbox" value="苹果" />苹果
+				</li>
+				<li>
+					<input name="enjoy" type="checkbox" value="香蕉" checked="checked" />香蕉
+				</li>
+				<li>
+					<input name="enjoy" type="checkbox" value="葡萄" />葡萄
+				</li>
+				<li>
+					<input name="enjoy" type="checkbox" value="梨" checked="checked" />梨
+				</li>
+				<li>
+					<input name="enjoy" type="checkbox" value="西瓜" />西瓜
+				</li>
+			</ul>
+			<div id="msg2" style="margin-top: 10px;text-align: left;"></div>
+		</fieldset>
+		<fieldset>
+			<legend>创建图片</legend>
+			<div id="msg3"></div>
+		</fieldset>
+		<fieldset>
+			<legend>克隆图片</legend>
+			<div id="msg4"></div>
+		</fieldset>
+		<script>
+			//菜单收缩与扩展
+			function show(item) {
+				let currentMenu = document.getElementById(item);
+				let currentStatus = currentMenu.style.display;
+				currentMenu.style.display = currentStatus == "" ? "none" : "";
+			}
+
+			//2.	点击“获取原始图片路径”，将图片路径显示在指定区域。
+			let fruit = document.getElementById("fruit")//获取id为fruit的图片	
+			let yuanshi = document.querySelectorAll("li")[0]; //获取原始图片路径所在盒子
+			let msg1 = document.getElementById("msg1"); //获取id为msg1的盒子
+			//添加监听事件
+			yuanshi.addEventListener("click",function(){
+				msg1.innerHTML = fruit.src;
+			})
+
+			//3.	点击“获取我喜欢的水果”，结果显示在指定区域。 
+			let li = document.getElementsByName("enjoy");//通过name属性获取元素
+			let love = document.querySelectorAll("li")[1];
+			let msg2 = document.getElementById("msg2");//获取id为msg2的盒子
+			//添加监听事件
+			love.addEventListener("click",function(){
+				for(i of li){
+					if(i.checked){
+						msg2.innerHTML += i.value;					
+					}
+				}
+			})
+
+
+			//4.	点击“创建图片”
+			let create = document.querySelectorAll("#menu2 li")[0];
+			let msg3 = document.getElementById('msg3');
+			//添加监听事件
+			create.addEventListener("click",function(){
+        		var img = document.createElement('img');//创建一个标签
+       	 		img.setAttribute('src','grape.jpg');//给标签赋值
+        		msg3.appendChild(img);//根据id放置到相应的位置
+    		});
+			//5.	点击“克隆图片”
+			let msg4 = document.getElementById("msg4");
+			let clone = document.querySelectorAll("#menu2 li")[1];
+			//添加监听事件
+			clone.addEventListener("click",function(){
+				var img = document.createElement('img');//创建一个标签
+       	 		img.setAttribute('src','grape.jpg');//给标签赋值
+        		msg4.appendChild(img);//放到指定的msg4里
+			})
+			//6.	点击“改变图片”，将改变原始图片区域的图片
+			let change = document.querySelectorAll("#menu2 li")[2];
+			//添加监听事件
+			change.addEventListener("click",function(){
+				document.getElementById("fruit").src = "img/grape.jpg";
+			})
+			//7.	点击“删除图片”，原始图片将被删除
+			let move = document.querySelectorAll("#menu2 li")[3];
+			//添加监听事件
+			move.addEventListener("click",function(){
+				document.getElementById("fruit").src = "";
+			})
+
+			//8.	点击“为原始图片加上行间样式”，将改变原始图片的样式，
+			let css = document.querySelectorAll("#menu3 li")[0];
+			//添加监听事件
+			css.addEventListener("click",function(){
+				document.getElementById("fruit").style.borderRadius  = "100px";
+			})
+
+			//9.	点击“为所有的fieldset加上内部样式”，将改变fieldset的样式，
+			let allCss = document.querySelectorAll("#menu3 li")[1];
+			let all = document.getElementsByTagName("fieldset");
+			//添加监听事件
+			allCss.addEventListener("click",function(){
+				for(i of all)
+				i.style.background = "yellowgreen";
+			})
+
+
+
+		</script>
+	</body>
+</html>
