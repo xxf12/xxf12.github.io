@@ -14,5 +14,6 @@
         <p>爱好： JavaScript</p>
     </div>
     <a href = "test.html"><img src = "left.png"></a>
+    <a href = "text.html"><img src = "fruit.jpg"></a>
 </body>
 </html>
